@@ -20,7 +20,8 @@
                         <h3>Iniciar Sesión</h3>
                     </div>
                     <div class="card-body">
-                        <form>
+                        {% csrf_token %}
+                        <form  method="POST"  action="{% url 'dashboard' %}">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo Electrónico</label>
                                 <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico" required>
@@ -30,9 +31,11 @@
                                 <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
                             </div>
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                                <!-- <button type="submit" class="btn btn-primary" name="dashboard">Iniciar Sesión</button> -->
+                                <a href="{% url 'dashboard' %}" class="btn btn-primary">Iniciar Sesión</a>
                             </div>
                         </form>
+
                     </div>
                     <div class="card-footer text-center">
                         <small>¿No tienes una cuenta? <a href="#">Regístrate</a></small>
