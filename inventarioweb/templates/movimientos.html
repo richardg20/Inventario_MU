@@ -1,0 +1,34 @@
+{%extends 'dashboard.html'%}
+
+{%block content%}
+
+<div class="text-center">
+    <h1>Lista de movimientos</h1>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Producto</th>
+        <th>Tipo de movimiento</th>
+        <th>Cantidad</th>
+        <th>Fecha</th>
+        <th>Pasillo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in recepciones %}
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.producto }}</td>
+        <td>{{ item.movimiento }}</td>
+        <td>{{ item.cantidad }}</td>
+        <td>{{ item.fecha }}</td>
+        <td>{{ item.pasillo }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{%endblock%}

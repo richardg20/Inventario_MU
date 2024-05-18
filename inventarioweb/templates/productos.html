@@ -10,16 +10,28 @@
                 <div class="card mb-4">
     
                     <img src="{{ product.imagen.url }}" style="object-fit:scale-down;" width="230" height="230">
+
                     <div class="card-body">
-                        <h5 class="card-title">{{ product.nombre }}</h5>
+                        <h5 class="card-title">{{ product.id }}. {{ product.nombre }} </h5>
                         <p class="card-text">{{ product.descripcion }}</p>
                         <p class="card-text"><strong>${{ product.precio }}</strong></p>
-                        <a href="" class="btn btn-primary">Accion</a>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              Movimientos
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li> <a type="button" class="dropdown-item" href="{% url 'recepcion' product.id %}" >Recepción</a> </li>
+                              <li><a class="dropdown-item" href="#">Envío</a></li>
+                              <li><a class="dropdown-item" href="#">Modificación</a></li>
+                            </ul>
+                          </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+
 </div>
+
 
 {% endblock %}

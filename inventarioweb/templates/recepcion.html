@@ -1,0 +1,61 @@
+{% extends 'dashboard.html' %}
+
+{%block content%}
+
+<div class="album mt-4"> 
+    <div class="row align-items-center justify-content-between">
+
+      {% comment %} div contiene la imagen, el nombre y el precio {% endcomment %}
+      <div class="col-6 mt-6" style="text-align: center;">
+        <div class="card" style="width: 30rem; text-align: center;" >
+            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="..." style="object-fit:scale-down;">
+            <div class="card-body">
+              <h2 class="card-text">{{ producto.nombre }}</h2>
+              <h3 style="text-align: center;"> ${{ producto.precio }}</h3>
+            </div>
+        </div>
+      </div>
+     {% comment %} end div foto precio nombre {% endcomment %}
+
+    {% comment %} div para la descripcion y demas weas {% endcomment %}
+    <div class="col-6 mt-6">
+    
+          <h1>Descripción</h1>
+              <p> {{ producto.descripcion }} </p>
+          <ul class="ui-vpp-highlighted-specs__features-list">
+            <li
+              class="ui-vpp-highlighted-specs__features-list-item ui-pdp-color--BLACK ui-pdp-size--XSMALL ui-pdp-family--REGULAR">
+              Tipo de producto: {{ producto.tipo_producto }}</li>
+            </ul>  
+    </div>
+    
+    {% comment %} end div de weas {% endcomment %}
+    <hr>
+    <div class="text-center">
+        <h1>Registrar recepción</h1>
+    </div>
+
+    <div class="container mt-5">
+        <form method="POST" action="{% url 'confirmar_recepcion' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre producto</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ producto.nombre }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad recibida</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Ingrese una cantidad">
+            </div>
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha de recepción</label>
+                <input type="date" class="form-control" id="fecha" name="fecha">
+            </div>
+            <div class="mb-3">
+                <label for="pasillo" class="form-label">Pasillo de recepción</label>
+                <input type="text" class="form-control" id="pasillo" name="pasillo" placeholder="Ingrese el pasillo">
+            </div>
+            <button type="submit" class="btn btn-primary" name="confirmar_recepcion">Confirmar recepción</button>
+        </form>
+    </div>
+</div>   
+{% endblock %}
