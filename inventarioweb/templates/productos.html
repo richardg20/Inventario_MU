@@ -1,0 +1,25 @@
+{% extends 'dashboard.html' %}
+
+{%block content%}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Lista de productos</h1>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+    
+                    <img src="{{ product.imagen.url }}" style="object-fit:scale-down;" width="230" height="230">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.nombre }}</h5>
+                        <p class="card-text">{{ product.descripcion }}</p>
+                        <p class="card-text"><strong>${{ product.precio }}</strong></p>
+                        <a href="" class="btn btn-primary">Accion</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
