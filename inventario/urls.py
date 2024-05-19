@@ -28,6 +28,8 @@ urlpatterns = [
     path('recepcion/<int:id>',views.recepcion, name="recepcion"),
     path('confirmar_recepcion/', views.confirmar_recepcion, name="confirmar_recepcion"),
     path('movimientos/', views.movimientos, name="movimientos"),
+    path('historial/', views.historial, name="historial"),
+    path('informe/', views.informe, name="informe")
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
