@@ -56,3 +56,9 @@ def confirmar_recepcion(request):
 def movimientos(request):
     recepciones = Recepcion.objects.all()
     return render(request, 'movimientos.html', {'recepciones': recepciones})
+
+def historial(request):
+    return render(request,'historial.html')
+
+def informe(request):
+    return render(request,'informe.html')
