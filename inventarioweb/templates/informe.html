@@ -14,24 +14,14 @@
         <th scope="col">Stock disponible</th>
       </tr>
     </thead>
+    {% for product in products %}
     <tbody>
       <tr>
-        <th scope="row">1</th>
-        <td>Producto 1</td>
-        <td>20</td>
-        
+        <th scope="row">{{ product.id }}</th>
+        <td>{{ product.nombre }}</td>
+        <td>{{ product.stock }}</td>
       </tr>
-      <tr>
-        <th scope="row">ID</th>
-        <td>Producto 2</td>
-        <td>10</td>
-
-      </tr>
-      <tr>
-        <th scope="row">ID</th>
-        <td>Producto 3</td>
-        <td>5</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 {% endblock %}

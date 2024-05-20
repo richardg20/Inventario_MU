@@ -5,31 +5,42 @@
 <h1 class="mt-5">Historial de precios del componente</h1>
 
 <table class="table mt-5">
-    <thead>
-      <tr>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  {% for product in products %}
+  <tbody>
+    <tr>
+      <td>{{ product.nombre }}</td>
+      <td>{{ product.precio }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
-        <th scope="col">Fecha</th>
-        <th scope="col">Precio</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">03/02/2024</th>
-        <td>20.000$</td>
+<h1 class="mt-5">Historicos</h1>
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Fecha</th>
+    </tr>
+  </thead>
+  {% for precio in precios %}
+  <tbody>
+    <tr>
+      <td>{{ precio.nombre }}</td>
+      <td>{{ precio.precio }}</td>
+      <td>{{ precio.fecha }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
-      </tr>
-      <tr>
-        <th scope="row">20/04/2024</th>
-        <td>25.000$</td>
-
-      </tr>
-      <tr>
-        <th scope="row">18/05/2024</th>
-        <td>40.000$</td>
-
-      </tr>
-    </tbody>
-  </table>
 
 {%endblock%}

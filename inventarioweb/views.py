@@ -58,7 +58,11 @@ def movimientos(request):
     return render(request, 'movimientos.html', {'recepciones': recepciones})
 
 def historial(request):
-    return render(request,'historial.html')
+    products = Producto.objects.all()
+    precio = HistorialPrecio.objects.all()
+    return render(request, 'historial.html', {'products': products, 'precios': precio} )
+
 
 def informe(request):
-    return render(request,'informe.html')
+    products = Producto.objects.all()
+    return render(request, 'informe.html', {'products': products})
