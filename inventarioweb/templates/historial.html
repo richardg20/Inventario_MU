@@ -2,13 +2,17 @@
 
 {%block content%}
 
-<h1 class="mt-5">Historial de precios del componente</h1>
+<div class="text-center">
+  <h1>Historial de precios del componente</h1>
+</div>
 
+
+<h1 class="mt-5"> Productos</h1>
 <table class="table mt-5">
   <thead>
     <tr>
       <th scope="col">Nombre</th>
-      <th scope="col">Precio</th>
+      <th scope="col">Precio Actual</th>
     </tr>
   </thead>
   {% for product in products %}
@@ -22,7 +26,7 @@
 </table>
 
 
-<h1 class="mt-5">Historicos</h1>
+<h1 class="mt-5">Históricos</h1>
 <table class="table mt-5">
   <thead>
     <tr>

@@ -12,7 +12,14 @@ def dashboard(request):
 
 def productos(request):
     products = Producto.objects.all()
-    return render(request, 'productos.html', {'products': products})
+    low_stock_products = products.filter(stock__lte=5)
+    alerta_stock = None
+    if low_stock_products.exists():
+        alerta_stock = "Algunos productos tienen un stock bajo. Por favor, revisa los siguientes productos: " + ", ".join([product.nombre for product in low_stock_products])
+
+
+    return render(request, 'productos.html', {'products': products,'alerta_stock': alerta_stock})
+
 
 def recepcion(request, id):
     product = get_object_or_404(Producto, id=id)
