@@ -10,7 +10,13 @@
         {{ alerta_stock }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    {% endif %}  
+    {% endif %}
+    {% if alerta_vencimiento %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ alerta_vencimiento }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}    
     
     <div class="row">
         {% for product in products %}

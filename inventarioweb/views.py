@@ -14,11 +14,22 @@ def productos(request):
     products = Producto.objects.all()
     low_stock_products = products.filter(stock__lte=5)
     alerta_stock = None
+    alerta_vencimiento = None
+    
     if low_stock_products.exists():
         alerta_stock = "Algunos productos tienen un stock bajo. Por favor, revisa los siguientes productos: " + ", ".join([product.nombre for product in low_stock_products])
+    
+    # Calcular la fecha actual
+    fecha_actual = datetime.now().date()
+    # Calcular la fecha dentro de 3 meses
+    fecha_tres_meses = fecha_actual + timedelta(days=90)
+    # Filtrar los productos cuya fecha de vencimiento esté dentro de los próximos 3 meses
+    productos_proximo_vencimiento = products.filter(fecha_vencimiento__lte=fecha_tres_meses)
+    if productos_proximo_vencimiento.exists():
+        alerta_vencimiento = "Algunos productos están próximos a vencer en los próximos 3 meses."
+    
+    return render(request, 'productos.html', {'products': products,'alerta_stock': alerta_stock, 'alerta_vencimiento': alerta_vencimiento})
 
-
-    return render(request, 'productos.html', {'products': products,'alerta_stock': alerta_stock})
 
 
 def recepcion(request, id):
@@ -69,7 +80,7 @@ def historial(request):
     precio = HistorialPrecio.objects.all()
     return render(request, 'historial.html', {'products': products, 'precios': precio} )
 
-
 def informe(request):
     products = Producto.objects.all()
     return render(request, 'informe.html', {'products': products})
+#Aca se ingresara la vista de productos
