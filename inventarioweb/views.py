@@ -26,13 +26,23 @@ def productos(request):
     fecha_tres_meses = fecha_actual + timedelta(days=90)
     # Filtrar los productos cuya fecha de vencimiento esté dentro de los próximos 3 meses
     productos_proximo_vencimiento = products.filter(fecha_vencimiento__lte=fecha_tres_meses)
+<<<<<<< HEAD
+=======
+    if productos_proximo_vencimiento.exists():
+        alerta_vencimiento = "Algunos productos están próximos a vencer en los próximos 3 meses."
+    
+    return render(request, 'productos.html', {'products': products,'alerta_stock': alerta_stock, 'alerta_vencimiento': alerta_vencimiento})
+>>>>>>> dca82c0129c4a84eb59237f18485926edef24a55
 
     if productos_proximo_vencimiento.exists():
         alerta_vencimiento = "Algunos productos están próximos a vencer en los próximos 3 meses."
     
     return render(request, 'productos.html', {'products': products,'alerta_stock': alerta_stock, 'alerta_vencimiento': alerta_vencimiento})
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dca82c0129c4a84eb59237f18485926edef24a55
 
 def recepcion(request, id):
     product = get_object_or_404(Producto, id=id)
@@ -86,6 +96,7 @@ def historial(request):
 def informe(request):
     products = Producto.objects.all()
     return render(request, 'informe.html', {'products': products})
+<<<<<<< HEAD
 
 
 def envio(request, id):
@@ -148,3 +159,6 @@ def confirmar_adicionpro(request):
         return redirect('productos') 
     else:
         return HttpResponse('Error: Se requiere una solicitud POST')
+=======
+#Aca se ingresara la vista de productos
+>>>>>>> dca82c0129c4a84eb59237f18485926edef24a55
