@@ -10,20 +10,12 @@ class Producto(models.Model):
     tipo_producto = models.CharField(max_length=100)
     imagen = models.ImageField(upload_to='imagenes/', default='imagenes/default.png')
     stock = models.IntegerField(default=0)
-<<<<<<< HEAD
     fecha_vencimiento = models.DateField(default=datetime.now().date())
-=======
-    lote =models.CharField(max_length=100, default= 0)
-    fecha_vencimiento = models.DateField(default=datetime.now().date())
-
->>>>>>> dca82c0129c4a84eb59237f18485926edef24a55
 
     def __str__(self):
         return self.nombre
     class Meta:
         db_table = 'inventarioweb_producto'
-class lote (Models.Model):
-    id = models.AutoField(primary_key=True)
 
 
 class Recepcion(models.Model):
