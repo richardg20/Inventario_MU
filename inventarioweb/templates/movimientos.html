@@ -5,7 +5,9 @@
 <div class="text-center">
     <h1>Lista de movimientos</h1>
 </div>
+<br>
 
+<h2>Recepción</h2>
 <table class="table">
     <thead>
       <tr>
@@ -30,5 +32,31 @@
       {% endfor %}
     </tbody>
   </table>
+  <br>
+  <h2>Envío</h2>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Tipo de movimiento</th>
+          <th>Cantidad</th>
+          <th>Fecha</th>
+          <th>Empesa receptora</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in envios %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.producto }}</td>
+          <td>{{ item.movimiento }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.fecha }}</td>
+          <td>{{ item.empresa }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
 {%endblock%}

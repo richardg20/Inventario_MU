@@ -10,7 +10,13 @@
         {{ alerta_stock }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    {% endif %}  
+    {% endif %}
+    {% if alerta_vencimiento %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ alerta_vencimiento }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}    
     
     <div class="row">
         {% for product in products %}
@@ -30,7 +36,7 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li> <a type="button" class="dropdown-item" href="{% url 'recepcion' product.id %}" >Recepción</a> </li>
-                              <li><a class="dropdown-item" href="#">Envío</a></li>
+                              <li><a class="dropdown-item"href="{% url 'envio' product.id %}">Envío</a></li>
                               <li><a class="dropdown-item" href="#">Modificación</a></li>
                             </ul>
                           </div>

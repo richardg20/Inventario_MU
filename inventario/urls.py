@@ -26,10 +26,14 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name="dashboard"),
     path('productos/', views.productos, name="productos"),
     path('recepcion/<int:id>',views.recepcion, name="recepcion"),
+    path('envio/<int:id>',views.envio, name="envio"),
+    path('confirmar_envio/',views.confirmar_envio, name="confirmar_envio"),
     path('confirmar_recepcion/', views.confirmar_recepcion, name="confirmar_recepcion"),
     path('movimientos/', views.movimientos, name="movimientos"),
     path('historial/', views.historial, name="historial"),
-    path('informe/', views.informe, name="informe")
+    path('informe/', views.informe, name="informe"),
+    path('addpro/', views.addpro, name="addpro"),
+    path('addproconf/', views.confirmar_adicionpro, name="confirmar_adicionpro")
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime, timedelta , date 
 
 # Create your models here.
 class Producto(models.Model):
@@ -9,11 +10,13 @@ class Producto(models.Model):
     tipo_producto = models.CharField(max_length=100)
     imagen = models.ImageField(upload_to='imagenes/', default='imagenes/default.png')
     stock = models.IntegerField(default=0)
+    fecha_vencimiento = models.DateField(default=datetime.now().date())
 
     def __str__(self):
         return self.nombre
     class Meta:
         db_table = 'inventarioweb_producto'
+
 
 class Recepcion(models.Model):
 
@@ -44,4 +47,19 @@ class HistorialPrecio(models.Model):
 
     class Meta:
         db_table = 'inventarioweb_HistorialPrecio'
-    
+
+class Envio(models.Model):
+
+    id = models.AutoField(primary_key=True)
+    producto = models.CharField(max_length=100)
+    cantidad = models.IntegerField(default=0)
+    fecha = models.CharField(max_length=60)
+    empresa = models.CharField(max_length=100)
+    movimiento = models.CharField(max_length=100, default=" ")
+
+       
+    def __str__(self):
+        return f"{self.producto} ({self.id})"
+
+    class Meta:
+        db_table = 'inventarioweb_envio'
