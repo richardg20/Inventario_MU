@@ -147,3 +147,28 @@ def confirmar_adicionpro(request):
         return redirect('productos') 
     else:
         return HttpResponse('Error: Se requiere una solicitud POST')
+
+
+
+
+
+
+def proveedores(request):
+    if request.method == 'POST':
+        nombre = request.POST['nombre']
+        email = request.POST.get('email', '')
+        telefono = request.POST['telefono']
+        ciudad = request.POST['ciudad']
+
+        proveedor = Provedores(nombre=nombre, email=email, telefono=telefono, ciudad=ciudad)
+        proveedor.save()
+
+        return redirect('proveedores')
+    
+    proveedores = Provedores.objects.all()
+    return render(request, 'proveedores.html', {'proveedores': proveedores})
+
+def eliminar_proveedor(request, id_provedor):
+    proveedor = get_object_or_404(Provedores, id_provedor=id_provedor)
+    proveedor.delete()
+    return redirect('proveedores')

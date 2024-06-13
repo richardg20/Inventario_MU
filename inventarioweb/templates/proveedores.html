@@ -1,0 +1,64 @@
+{% extends 'dashboard.html' %}
+
+{%block content%}
+<div class="container mt-5">
+    <h1 class="mb-4">Proveedores</h1>
+
+    <!-- Tabla de proveedores -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Ciudad</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proveedor in proveedores %}
+            <tr>
+                <td>{{ proveedor.id_provedor }}</td>
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.email }}</td>
+                <td>{{ proveedor.telefono }}</td>
+                <td>{{ proveedor.ciudad }}</td>
+                <td>{{ proveedor.fecha }}</td>
+                <td>
+                    <form method="POST" action="{% url 'eliminar_proveedor' proveedor.id_provedor %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Formulario para agregar proveedor -->
+    <h2 class="mt-5">Agregar Proveedor</h2>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" name="telefono" required>
+        </div>
+        <div class="form-group">
+            <label for="ciudad">Ciudad</label>
+            <input type="text" class="form-control" id="ciudad" name="ciudad" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Agregar</button>
+    </form>
+</div>
+
+{% endblock %}

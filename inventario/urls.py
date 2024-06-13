@@ -33,7 +33,9 @@ urlpatterns = [
     path('historial/', views.historial, name="historial"),
     path('informe/', views.informe, name="informe"),
     path('addpro/', views.addpro, name="addpro"),
-    path('addproconf/', views.confirmar_adicionpro, name="confirmar_adicionpro")
+    path('addproconf/', views.confirmar_adicionpro, name="confirmar_adicionpro"),
+    path('proveedores/', views.proveedores, name="proveedores"),
+    path('proveedores/eliminar/<int:id_provedor>/', views.eliminar_proveedor, name="eliminar_proveedor"),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

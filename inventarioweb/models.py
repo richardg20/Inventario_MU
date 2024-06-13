@@ -63,3 +63,16 @@ class Envio(models.Model):
 
     class Meta:
         db_table = 'inventarioweb_envio'
+
+
+class Provedores(models.Model):
+    id_provedor = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    telefono = models.CharField(max_length=20)
+    ciudad = models.CharField(max_length=100)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.nombre
+    
