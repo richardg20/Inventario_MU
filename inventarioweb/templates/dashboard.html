@@ -38,97 +38,98 @@
   </head>
   <body>
     
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Maestranzas Unidos S.A</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Maestranzas Unidos S.A</a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <h4 class="nav-link" style="color: aliceblue;">
+        Bienvenid@!  {{ request.user.first_name }} {{ request.user.last_name }} 
+        | Perfil   {% if is_admin%}  Administrador{%endif%}
+        {% if is_gestor%}  Gestor de Inventario{%endif%}
+        {% if is_logistica%}  Encargado de Logística{%endif%}
+        {% if is_comprador%}  Comprador{%endif%}
+        {% if is_auditor%}  Auditor{%endif%}
+      </h4>
+      <div class="navbar-nav">
 
+        <div class="nav-item text-nowrap">
 
-
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="{% url 'home' %}">Cerrar Sesión</a>
+          <a class="nav-link px-3" href="{% url 'home' %}">Cerrar Sesión</a>
+        </div>
+      </div>
       
-    </div>
-  </div>
-</header>
+    </header>
 
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Funciones principales</span>
+          <a class="link-secondary" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
         <ul class="nav flex-column">
+
+          {% if is_admin or is_logistica or is_gestor%}
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'productos'%}">
               <span data-feather="home"></span>
               Productos
             </a>
           </li>
+          {%endif%}
+       
+          {% if is_admin or is_logistica or is_gestor%}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'addpro'%}">
               <span data-feather="bar-chart-2"></span>
               Agregar productos
             </a>
           </li>
+          {%endif%}
+           
+          {% if is_admin or is_auditor or is_logistica or is_gestor%}
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'movimientos'%}">
               <span data-feather="file"></span>
               Movimientos
             </a>
           </li>
+          {%endif%}
+
+          {% if is_admin or is_auditor or is_gestor%}
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'historial'%}">
               <span data-feather="shopping-cart"></span>
               Historial de precio
             </a>
           </li>
+          {%endif%}
+
+          {% if is_admin or is_auditor or is_gestor%}
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'informe'%}">
               <span data-feather="users"></span>
               Informe
             </a>
           </li>
+          {%endif%}
+
+          {% if is_admin or is_comprador%}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'proveedores'%}">
               <span data-feather="layers"></span>
-              Provedores
+              Proveedores
             </a>
           </li>
+
+          {%endif%}
         </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
+       
       </div>
     </nav>
 

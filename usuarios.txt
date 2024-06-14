@@ -1,0 +1,6 @@
+admin: administrador admin.123
+gestor: gestorinventario gestor.123
+comprador: comprador comp.123
+logistica: logistica log.12345
+auditor: auditor audi.12345
+		

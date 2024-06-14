@@ -3,15 +3,39 @@ from django.contrib import messages
 from .models import *
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .decorators import group_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
     return render(request,'home.html')
 
+
+@login_required
 def dashboard(request):
-    return render(request,'dashboard.html')
+
+    #user_groups = request.user_groups  Obtener los grupos del usuario desde el request
+    user_groups = getattr(request, 'user_groups', {})
+
+    context = {
+        'is_admin': user_groups.get('is_admin', False),
+        'is_auditor': user_groups.get('is_auditor', False),
+        'is_comprador': user_groups.get('is_comprador', False),
+        'is_logistica': user_groups.get('is_logistica', False),
+        'is_gestor': user_groups.get('is_gestor', False),
+    }
+
+    print(user_groups)
+    print('------------')
+    print(context)
+
+    return render(request,'dashboard.html',context)
+
 
 def productos(request):
+
     products = Producto.objects.all()
     low_stock_products = products.filter(stock__lte=5)
     alerta_stock = None
@@ -150,9 +174,6 @@ def confirmar_adicionpro(request):
 
 
 
-
-
-
 def proveedores(request):
     if request.method == 'POST':
         nombre = request.POST['nombre']
@@ -172,3 +193,15 @@ def eliminar_proveedor(request, id_provedor):
     proveedor = get_object_or_404(Provedores, id_provedor=id_provedor)
     proveedor.delete()
     return redirect('proveedores')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            return render(request, 'home.html', {'error': 'Nombre de usuario o contraseña incorrectos'})
+    return render(request, 'home.html')
