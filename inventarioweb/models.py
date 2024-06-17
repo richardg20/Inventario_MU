@@ -76,3 +76,15 @@ class Provedores(models.Model):
     def __str__(self):
         return self.nombre
     
+class Kit(models.Model):
+    id_kit = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+    precio = models.IntegerField()
+    descripcion =models.CharField(max_length=200)
+    tipo_producto = models.CharField(max_length=100)
+    imagen = models.ImageField(upload_to='imagenes/', default='imagenes/default.png')
+    stock = models.IntegerField(default=0)
+    fecha_vencimiento = models.DateField(default=datetime.now().date())
+
+    def __str__(self):
+        return self.nombre

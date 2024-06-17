@@ -205,3 +205,36 @@ def login_view(request):
         else:
             return render(request, 'home.html', {'error': 'Nombre de usuario o contraseña incorrectos'})
     return render(request, 'home.html')
+
+def kit(request):
+    return render(request, 'kit.html')
+
+def confirmar_kit(request):
+    
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        precio = request.POST.get('precio')
+        stock = request.POST.get('stock')
+        fechav = request.POST.get('fecha')
+        tipo_pro = request.POST.get('empresa_seleccionada')
+        imagen = request.FILES['imagen']
+
+        kit = Kit(
+            nombre=nombre,
+            precio=precio,
+            tipo_producto = tipo_pro,
+            imagen=imagen,
+            stock = stock,
+            fecha_vencimiento = fechav
+        )
+        kit.save()
+
+        return redirect('kit') 
+    else:
+        return HttpResponse('Error: Se requiere una solicitud POST')
+
+
+def eliminar_kit (request, id_kit):
+    proveedor = get_object_or_404(Kit, id_kit=id_kit)
+    proveedor.delete()
+    return redirect('kit')

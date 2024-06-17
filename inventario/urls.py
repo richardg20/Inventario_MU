@@ -25,7 +25,6 @@ urlpatterns = [
     path('',views.home, name="home"),
     path('dashboard/', views.dashboard, name="dashboard"),
     path('login/', views.login_view, name="login"),
-
     path('productos/', views.productos, name="productos"),
     path('recepcion/<int:id>',views.recepcion, name="recepcion"),
     path('envio/<int:id>',views.envio, name="envio"),
@@ -38,6 +37,8 @@ urlpatterns = [
     path('addproconf/', views.confirmar_adicionpro, name="confirmar_adicionpro"),
     path('proveedores/', views.proveedores, name="proveedores"),
     path('proveedores/eliminar/<int:id_provedor>/', views.eliminar_proveedor, name="eliminar_proveedor"),
+    path('kit/', views.kit, name="kit"),
+    path('kit/eliminar/<int:id_kit>/', views.eliminar_kit, name="eliminar_kit"),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
